@@ -1,0 +1,48 @@
+﻿@model IEnumerable<HeBoGuoShi.Models.ProductViewModels.SellerProductViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div id="items">
+    <transition-group leave-active-class="animated hinge" class="gallay-container">
+        <template v-for="(item, index) in items">
+            <div class="gallay-item" v-bind:key="item">
+                <a>
+                    <img :src="item.OwnerProduct.ProfileImagePath">
+                </a>
+                <button :data-productId="item.Id" class="btn btn-danger" v-on:click="deleteProduct(item.Id, index)">删除</button>
+            </div>
+        </template>
+    </transition-group>
+</div>
+
+<script>
+    var sellerProducts = @Html.Raw(Json.Encode(Model));
+
+    var items = new Vue({
+        el: '#items',
+        data: {
+            items: sellerProducts
+        },
+        methods: {
+            deleteProduct: function (id, index) {
+                $.ajax({
+                    type: "Post",
+                    url: "/SellerProducts/Delete",
+                    data: { "id": id },
+                    success: function (success) {
+                        if (success) {
+                            sellerProducts.splice(index, 1);
+                        }
+                        else {
+
+                        }
+                    }
+                });
+            }
+        }
+    });
+</script>

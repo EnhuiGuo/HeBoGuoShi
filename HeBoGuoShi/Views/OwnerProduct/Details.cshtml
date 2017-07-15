@@ -1,0 +1,135 @@
+﻿@model HeBoGuoShi.DBModels.OwnerProduct
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OwnerProduct</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<div id="imagesPanel" class="panel panel-success">
+    <div class="panel-heading">
+        照片
+    </div>
+    <div class="panel-body">
+        <div id="imagesDetail">
+            @if (Model.OwnerProductImages != null && Model.OwnerProductImages.Count > 0)
+            {
+                @Html.Action("_ProductImagesDetail", "OwnerProduct", new { id = Model.Id })
+            }
+        </div>
+    </div>
+</div>
+
+<h4 style="margin-top: 2em;">上传照片</h4>
+@(Html.Kendo().Upload()
+        .Name("files")
+        .Async(a => a
+            .Save("SaveImages", "OwnerProduct", new { id = Model.Id })
+            .SaveField("files")
+            .AutoUpload(true)
+        )
+        .Events(events => events
+               .Success("updateImagesDetail")
+        )
+        .Validation(validation => validation.AllowedExtensions(new string[] { ".gif", ".jpg", ".png" }))
+)
+<div>你只可以上传<strong>GIF</strong>, <strong>JPG</strong>, <strong>PNG</strong> 格式的文件。</div>
+
+
+<script>
+    var productId = @Html.Raw(Json.Encode(Model.Id));
+
+    deleteImage = function (image) {
+
+        $.confirm({
+            title: "要删除么？",
+            content: "删除",
+            buttons: {
+                confirm: function () {
+                    var id = $(image).data("imageId");
+                    $.ajax({
+                        type: "POST",
+                        url: "/OwnerProduct/RemoveImage",
+                        data: { "id": id },
+                        success: function (result) {
+                            if (result.Success) {
+                                updateImagesDetail();
+                            }
+                        }
+                    });
+                },
+                cancel: function () {
+
+                },
+            }
+        });
+    }
+
+    function updateImagesDetail(e) {
+        $.ajax({
+            type: "GET",
+            url: "/OwnerProduct/_ProductImagesDetail",
+            data: { "id": productId },
+            success: function (result) {
+                console.log(result);
+                $('#imagesDetail').html(result);
+            }
+        });
+    }
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/image-model-silder.js")
+}

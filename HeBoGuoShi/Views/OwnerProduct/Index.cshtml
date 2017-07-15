@@ -1,0 +1,123 @@
+﻿@*@model IEnumerable<HeBoGuoShi.DBModels.OwnerProduct>*@
+
+@model IEnumerable<HeBoGuoShi.Models.ProductViewModels.OwnerProductViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>*@
+
+<div class="panel panel-success">
+    <div class="panel-heading">
+        您的物品
+    </div>
+    <div class="panel-body">
+
+        <div id="items">
+            <div class="hignlight-group">
+                <input type="text" v-model="search" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>输入物品名称</label>
+            </div>
+
+            @*<div class="gallay-container">
+            @foreach (var item in Model)
+            {
+                <a href="@Url.Action("Details",new { id=item.Id })">
+                    <img src="@item.ProfileImagePath">
+                </a>
+            }
+        </div>*@
+
+            <div>
+                <transition-group enter-active-class="animated bounceIn" leave-active-class="animated bounceOut" class="gallay-container">
+                    <template v-for="(item, index) in filteredItems">
+                        <a class="gallay-item" v-bind:key="item" v-bind:href=" '/OwnerProduct/Details/' + item.Id">
+                            <img :src="item.ProfileImagePath">
+                            <div class="gally-item-detail">
+                                <p>名字: {{item.Name}}</p>
+                                <p>价格：{{item.Price}}</p>
+                                <p>简介：{{item.Description}}</p>
+                            </div>
+                        </a>
+                    </template>
+                </transition-group>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var ownerProducts = @Html.Raw(Json.Encode(Model));
+
+    var VM = new Vue({
+        el: '#items',
+        data: {
+            search: "",
+            items: ownerProducts
+        },
+        computed: {
+            filteredItems() {
+                console.log("asdf");
+                return this.items.filter(item => {
+                    return item.Name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+                })
+            }
+        }
+    });
+</script>

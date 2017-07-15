@@ -1,0 +1,92 @@
+﻿@model IEnumerable<HeBoGuoShi.Models.ProductViewModels.OwnerProductViewModel>
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<div id="items">
+    <transition-group leave-active-class="animated fadeOutDown" class="gallay-container">
+        <template v-for="(item, index) in items">
+            <div class="gallay-item" v-bind:key="item">
+                <img :src="item.ProfileImagePath">
+                <div class="gally-item-detail">
+                    <div>名字: {{item.Name}}</div>
+                    <div>价格：{{item.Price}}</div>
+                    <div>简介：{{item.Description}}</div>
+                </div>
+                <button value="asdasf" :data-productId="item.Id" class="btn btn-success" v-on:click="addProduct(item.Id, index)">添加</button>
+            </div>
+        </template>
+    </transition-group>
+</div>
+
+
+<script>
+
+    var ownerProducts = @Html.Raw(Json.Encode(Model));
+
+    var items = new Vue({
+        el: '#items',
+        data: {
+            items: ownerProducts
+        },
+        methods: {
+            addProduct: function (id, index) {
+                $.ajax({
+                    type: "post",
+                    url: "/sellerproducts/create",
+                    data: { "productid": id },
+                    success: function (success) {
+                        if (success) {
+                            ownerProducts.splice(index, 1);
+                        }
+                        else {
+
+                        }
+                    }
+                });
+            }
+        }
+    });
+
+</script>
+
+
+@*<h2>Create</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>SellerProduct</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.OwnerProductId, "OwnerProductId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("OwnerProductId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.OwnerProductId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
