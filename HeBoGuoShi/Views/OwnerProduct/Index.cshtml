@@ -6,10 +6,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>细节</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("添加新物品", "Create")
 </p>
 
 @*<table class="table">
@@ -61,7 +61,7 @@
 
 <div class="panel panel-success">
     <div class="panel-heading">
-        您的物品
+        <div>您的物品</div>
     </div>
     <div class="panel-body">
 
@@ -103,6 +103,7 @@
 </div>
 
 <script>
+
     var ownerProducts = @Html.Raw(Json.Encode(Model));
 
     var VM = new Vue({

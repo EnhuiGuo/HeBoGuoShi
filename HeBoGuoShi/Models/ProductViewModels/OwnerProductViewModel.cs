@@ -21,6 +21,8 @@ namespace HeBoGuoShi.Models.ProductViewModels
 
             if (dbModel.OwnerProductImages != null && dbModel.OwnerProductImages.Count > 0)
                 this.ProfileImagePath = dbModel.OwnerProductImages.FirstOrDefault().Path;
+            else
+                this.ProfileImagePath = "/Imgs/diaochan.jpg";
         }
 
 
