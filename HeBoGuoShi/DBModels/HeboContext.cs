@@ -16,6 +16,7 @@ namespace HeBoGuoShi.DBModels
         public DbSet<OwnerProduct> OwnerProducts { get; set; }
         public DbSet<OwnerProductImage> OwnerProductImages { get; set; }
         public DbSet<SellerProduct> SellerProducts { get; set; }
+        public DbSet<BuyerProduct> BuyerProducts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

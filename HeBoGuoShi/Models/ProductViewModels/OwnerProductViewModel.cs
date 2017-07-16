@@ -19,6 +19,7 @@ namespace HeBoGuoShi.Models.ProductViewModels
             this.Quantity = dbModel.Quantity;
             this.Margin = dbModel.Margin;
             this.Description = dbModel.Description;
+            this.UserName = dbModel.User.UserName;
 
             if (dbModel.OwnerProductImages != null && dbModel.OwnerProductImages.Count > 0)
                 this.ProfileImagePath = dbModel.OwnerProductImages.FirstOrDefault().Path;
@@ -35,6 +36,7 @@ namespace HeBoGuoShi.Models.ProductViewModels
             this.Quantity = dbModel.OwnerProduct.Quantity;
             this.Margin = dbModel.OwnerProduct.Margin;
             this.Description = dbModel.OwnerProduct.Description;
+            this.UserName = dbModel.User.UserName;
 
             if (dbModel.OwnerProduct.OwnerProductImages != null && dbModel.OwnerProduct.OwnerProductImages.Count > 0)
                 this.ProfileImagePath = dbModel.OwnerProduct.OwnerProductImages.FirstOrDefault().Path;
@@ -45,6 +47,7 @@ namespace HeBoGuoShi.Models.ProductViewModels
 
         public Guid Id { get; set; }
         public string UserId { get; set; }
+        public string UserName { get; set; }
         public string Name { get; set; }
         public float Price { get; set; }
         public int Quantity { get; set; }

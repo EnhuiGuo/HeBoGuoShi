@@ -192,10 +192,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BuyerProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OwnerProductController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SellerProductsController.cs" />
+    <Compile Include="DBModels\BuyerProduct.cs" />
     <Compile Include="DBModels\HeboContext.cs" />
     <Compile Include="DBModels\OwnerProduct.cs" />
     <Compile Include="DBModels\OwnerProductImage.cs" />
@@ -210,6 +213,18 @@
     <Compile Include="Migrations\201707160419540_addMargin.cs" />
     <Compile Include="Migrations\201707160419540_addMargin.Designer.cs">
       <DependentUpon>201707160419540_addMargin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707161620558_AddBuyer.cs" />
+    <Compile Include="Migrations\201707161620558_AddBuyer.Designer.cs">
+      <DependentUpon>201707161620558_AddBuyer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707161629190_EditBuyer.cs" />
+    <Compile Include="Migrations\201707161629190_EditBuyer.Designer.cs">
+      <DependentUpon>201707161629190_EditBuyer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707161949374_updateBuyerProduct.cs" />
+    <Compile Include="Migrations\201707161949374_updateBuyerProduct.Designer.cs">
+      <DependentUpon>201707161949374_updateBuyerProduct.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1076,8 +1091,11 @@
     <Content Include="Views\SellerProducts\Details.cshtml" />
     <Content Include="Views\SellerProducts\Edit.cshtml" />
     <Content Include="Views\SellerProducts\Index.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\BuyerProduct\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
@@ -1102,6 +1120,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707160419540_addMargin.resx">
       <DependentUpon>201707160419540_addMargin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707161620558_AddBuyer.resx">
+      <DependentUpon>201707161620558_AddBuyer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707161629190_EditBuyer.resx">
+      <DependentUpon>201707161629190_EditBuyer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707161949374_updateBuyerProduct.resx">
+      <DependentUpon>201707161949374_updateBuyerProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

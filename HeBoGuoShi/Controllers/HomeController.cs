@@ -13,20 +13,20 @@ namespace HeBoGuoShi.Controllers
         private HeboContext db = new HeboContext();
         public ActionResult Index()
         {
-            var ownerProducts = db.OwnerProducts.ToList();
+            //var ownerProducts = db.OwnerProducts.ToList();
             var sellerProducts = db.SellerProducts.ToList();
 
             var model = new List<OwnerProductViewModel>();
 
 
-            if (ownerProducts != null)
-            {
-                foreach (var ownerProduct in ownerProducts)
-                {
-                    var item = new OwnerProductViewModel(ownerProduct);
-                    model.Add(item);
-                }
-            }
+            //if (ownerProducts != null)
+            //{
+            //    foreach (var ownerProduct in ownerProducts)
+            //    {
+            //        var item = new OwnerProductViewModel(ownerProduct);
+            //        model.Add(item);
+            //    }
+            //}
 
             if (sellerProducts != null)
             {

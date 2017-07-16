@@ -94,15 +94,16 @@
 <div id="items">
     <transition-group leave-active-class="animated fadeOutDown" class="gallay-container">
         <template v-for="(item, index) in items">
-            <div class="gallay-item" v-bind:key="item">
+            <a class="gallay-item" v-bind:key="item" v-bind:href=" '/Product/Details/' + item.Id">
                 <img :src="item.ProfileImagePath">
                 <div class="gally-item-detail">
+                    <div>用户名: {{item.UserName}}</div>
                     <div>名字: {{item.Name}}</div>
                     <div>价格：{{item.Price}}</div>
                     <div>简介：{{item.Description}}</div>
                 </div>
-                <button value="asdasf" :data-productId="item.Id" class="btn btn-success" v-on:click="addProduct(item.Id, index)">添加</button>
-            </div>
+                <button class="btn btn-success" v-on:click="buyProduct(item.Id,item.UserId, index)">添加</button>
+            </a>
         </template>
     </transition-group>
 </div>
@@ -117,21 +118,21 @@
             items: ownerProducts
         },
         methods: {
-            //addProduct: function (id, index) {
-            //    $.ajax({
-            //        type: "post",
-            //        url: "/sellerproducts/create",
-            //        data: { "productid": id },
-            //        success: function (success) {
-            //            if (success) {
-            //                ownerProducts.splice(index, 1);
-            //            }
-            //            else {
+            buyProduct: function (id, sellerId, index) {
+                $.ajax({
+                    type: "post",
+                    url: "/sellerproducts/create",
+                    data: { "productid": id },
+                    success: function (success) {
+                        if (success) {
+                            ownerProducts.splice(index, 1);
+                        }
+                        else {
 
-            //            }
-            //        }
-            //    });
-            //}
+                        }
+                    }
+                });
+            }
         }
     });
 
