@@ -1,8 +1,10 @@
-﻿@{
+﻿@model IEnumerable<HeBoGuoShi.Models.ProductViewModels.OwnerProductViewModel>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
+@*<div class="jumbotron">
     <h1>ASP.NET</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
@@ -87,5 +89,52 @@
     $(function () {
         $("#panelbar").kendoPanelBar();
     });
+</script>*@
+
+<div id="items">
+    <transition-group leave-active-class="animated fadeOutDown" class="gallay-container">
+        <template v-for="(item, index) in items">
+            <div class="gallay-item" v-bind:key="item">
+                <img :src="item.ProfileImagePath">
+                <div class="gally-item-detail">
+                    <div>名字: {{item.Name}}</div>
+                    <div>价格：{{item.Price}}</div>
+                    <div>简介：{{item.Description}}</div>
+                </div>
+                <button value="asdasf" :data-productId="item.Id" class="btn btn-success" v-on:click="addProduct(item.Id, index)">添加</button>
+            </div>
+        </template>
+    </transition-group>
+</div>
+
+<script>
+
+    var ownerProducts = @Html.Raw(Json.Encode(Model));
+
+    var items = new Vue({
+        el: '#items',
+        data: {
+            items: ownerProducts
+        },
+        methods: {
+            //addProduct: function (id, index) {
+            //    $.ajax({
+            //        type: "post",
+            //        url: "/sellerproducts/create",
+            //        data: { "productid": id },
+            //        success: function (success) {
+            //            if (success) {
+            //                ownerProducts.splice(index, 1);
+            //            }
+            //            else {
+
+            //            }
+            //        }
+            //    });
+            //}
+        }
+    });
+
 </script>
+
 

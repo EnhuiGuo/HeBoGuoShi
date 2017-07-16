@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HeBoGuoShi.DBModels;
+using HeBoGuoShi.Models.ProductViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,34 @@ namespace HeBoGuoShi.Controllers
 {
     public class HomeController : Controller
     {
+        private HeboContext db = new HeboContext();
         public ActionResult Index()
         {
-            return View();
+            var ownerProducts = db.OwnerProducts.ToList();
+            var sellerProducts = db.SellerProducts.ToList();
+
+            var model = new List<OwnerProductViewModel>();
+
+
+            if (ownerProducts != null)
+            {
+                foreach (var ownerProduct in ownerProducts)
+                {
+                    var item = new OwnerProductViewModel(ownerProduct);
+                    model.Add(item);
+                }
+            }
+
+            if (sellerProducts != null)
+            {
+                foreach (var sellerProduct in sellerProducts)
+                {
+                    var item = new OwnerProductViewModel(sellerProduct);
+                    model.Add(item);
+                }
+            }
+
+            return View(model);
         }
 
         public ActionResult About()

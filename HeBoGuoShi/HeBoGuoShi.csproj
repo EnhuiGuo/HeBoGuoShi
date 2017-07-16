@@ -207,6 +207,10 @@
     <Compile Include="Migrations\201706241412342_init.Designer.cs">
       <DependentUpon>201706241412342_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707160419540_addMargin.cs" />
+    <Compile Include="Migrations\201707160419540_addMargin.Designer.cs">
+      <DependentUpon>201707160419540_addMargin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -1095,6 +1099,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706241412342_init.resx">
       <DependentUpon>201706241412342_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707160419540_addMargin.resx">
+      <DependentUpon>201707160419540_addMargin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

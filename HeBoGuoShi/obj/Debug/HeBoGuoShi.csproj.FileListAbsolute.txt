@@ -137,3 +137,4 @@ E:\chengxu\HeBoGuoShi\HeBoGuoShi\bin\tr-TR\Kendo.Mvc.resources.dll
 E:\chengxu\HeBoGuoShi\HeBoGuoShi\bin\uk-UA\Kendo.Mvc.resources.dll
 E:\chengxu\HeBoGuoShi\HeBoGuoShi\bin\zh-CN\Kendo.Mvc.resources.dll
 E:\chengxu\HeboGuoshi\HeBoGuoShi\obj\Debug\HeBoGuoShi.csprojResolveAssemblyReference.cache
+E:\chengxu\HeBoGuoShi\HeBoGuoShi\obj\Debug\HeBoGuoShi.Migrations.addMargin.resources
