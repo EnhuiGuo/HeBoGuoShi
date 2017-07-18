@@ -18,7 +18,9 @@ namespace HeBoGuoShi.Controllers
         // GET: SellerProducts
         public ActionResult Index()
         {
-            var sellerProducts = db.SellerProducts.Include(s => s.OwnerProduct).Include(s => s.User).ToList();
+            var userId = User.Identity.GetUserId();
+
+            var sellerProducts = db.SellerProducts.Where(x=>x.UserId == userId).ToList();
 
             var model = new List<SellerProductViewModel>();
 
