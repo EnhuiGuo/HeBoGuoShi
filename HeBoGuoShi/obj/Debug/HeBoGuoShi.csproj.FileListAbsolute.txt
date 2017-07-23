@@ -140,4 +140,7 @@ E:\chengxu\HeBoGuoShi\HeBoGuoShi\obj\Debug\HeBoGuoShi.Migrations.addMargin.resou
 E:\chengxu\HeBoGuoShi\HeBoGuoShi\obj\Debug\HeBoGuoShi.Migrations.AddBuyer.resources
 E:\chengxu\HeBoGuoShi\HeBoGuoShi\obj\Debug\HeBoGuoShi.Migrations.EditBuyer.resources
 E:\chengxu\HeBoGuoShi\HeBoGuoShi\obj\Debug\HeBoGuoShi.Migrations.updateBuyerProduct.resources
-E:\chengxu\HeBoGuoShi\HeBoGuoShi\obj\Debug\HeBoGuoShi.csprojResolveAssemblyReference.cache
+E:\chengxu\HeBoGuoShi\HeBoGuoShi\obj\Debug\HeBoGuoShi.Migrations.addCart.resources
+E:\chengxu\HeBoGuoShi\HeBoGuoShi\obj\Debug\HeBoGuoShi.Migrations.editCartItemPK.resources
+E:\chengxu\HeBoGuoShi\HeBoGuoShi\obj\Debug\HeBoGuoShi.Migrations.editCartItem.resources
+E:\chengxu\HeBoGuoShi\HeBoGuoShi\obj\Debug\HeBoGuoShi.Migrations.addCartItemAgain.resources

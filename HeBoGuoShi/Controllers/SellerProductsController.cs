@@ -119,7 +119,7 @@ namespace HeBoGuoShi.Controllers
 
                 return Json(true);
             }
-            catch (Exception e)
+            catch
             {
                 return Json(false);
             }

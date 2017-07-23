@@ -199,6 +199,8 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SellerProductsController.cs" />
     <Compile Include="DBModels\BuyerProduct.cs" />
+    <Compile Include="DBModels\Cart.cs" />
+    <Compile Include="DBModels\CartItem.cs" />
     <Compile Include="DBModels\HeboContext.cs" />
     <Compile Include="DBModels\OwnerProduct.cs" />
     <Compile Include="DBModels\OwnerProductImage.cs" />
@@ -225,6 +227,22 @@
     <Compile Include="Migrations\201707161949374_updateBuyerProduct.cs" />
     <Compile Include="Migrations\201707161949374_updateBuyerProduct.Designer.cs">
       <DependentUpon>201707161949374_updateBuyerProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707230442473_addCart.cs" />
+    <Compile Include="Migrations\201707230442473_addCart.Designer.cs">
+      <DependentUpon>201707230442473_addCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707230635398_editCartItemPK.cs" />
+    <Compile Include="Migrations\201707230635398_editCartItemPK.Designer.cs">
+      <DependentUpon>201707230635398_editCartItemPK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707230652098_editCartItem.cs" />
+    <Compile Include="Migrations\201707230652098_editCartItem.Designer.cs">
+      <DependentUpon>201707230652098_editCartItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707230654240_addCartItemAgain.cs" />
+    <Compile Include="Migrations\201707230654240_addCartItemAgain.Designer.cs">
+      <DependentUpon>201707230654240_addCartItemAgain.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1129,6 +1147,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707161949374_updateBuyerProduct.resx">
       <DependentUpon>201707161949374_updateBuyerProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707230442473_addCart.resx">
+      <DependentUpon>201707230442473_addCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707230635398_editCartItemPK.resx">
+      <DependentUpon>201707230635398_editCartItemPK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707230652098_editCartItem.resx">
+      <DependentUpon>201707230652098_editCartItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707230654240_addCartItemAgain.resx">
+      <DependentUpon>201707230654240_addCartItemAgain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

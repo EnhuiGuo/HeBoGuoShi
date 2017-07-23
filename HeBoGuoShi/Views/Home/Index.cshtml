@@ -94,7 +94,7 @@
 <div id="items">
     <transition-group leave-active-class="animated fadeOutDown" class="gallay-container">
         <template v-for="(item, index) in items">
-            <a class="gallay-item" v-bind:key="item" v-bind:href=" '/Product/Details/' + item.Id">
+            <div class="gallay-item" v-bind:key="item" v-bind:href=" '/Product/Details/' + item.Id">
                 <img :src="item.ProfileImagePath">
                 <div class="gally-item-detail">
                     <div>用户名: {{item.UserName}}</div>
@@ -103,7 +103,7 @@
                     <div>简介：{{item.Description}}</div>
                 </div>
                 <button class="btn btn-success" v-on:click="buyProduct(item.Id,item.UserId, index)">添加</button>
-            </a>
+            </div>
         </template>
     </transition-group>
 </div>
@@ -121,8 +121,8 @@
             buyProduct: function (id, sellerId, index) {
                 $.ajax({
                     type: "post",
-                    url: "/sellerproducts/create",
-                    data: { "productid": id },
+                    url: "/Home/AddToCart",
+                    data: { "productId": id },
                     success: function (success) {
                         if (success) {
                             ownerProducts.splice(index, 1);

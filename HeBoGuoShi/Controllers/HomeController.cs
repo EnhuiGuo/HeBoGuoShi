@@ -1,5 +1,6 @@
 ﻿using HeBoGuoShi.DBModels;
 using HeBoGuoShi.Models.ProductViewModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace HeBoGuoShi.Controllers
     public class HomeController : Controller
     {
         private HeboContext db = new HeboContext();
+
         public ActionResult Index()
         {
             //var ownerProducts = db.OwnerProducts.ToList();
@@ -52,6 +54,47 @@ namespace HeBoGuoShi.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult AddToCart(Guid productId)
+        {
+            var userId = User.Identity.GetUserId();
+
+            if (userId == null && Session["CartId"] == null)
+            {
+                Cart newCart = new Cart();
+                var cart = db.Carts.Add(newCart);
+                db.SaveChanges();
+                Session["CartId"] = cart.Id;
+            }
+            else
+            {
+                var cart = db.Carts.FirstOrDefault(x => x.UserId == userId);
+
+                if (cart == null)
+                {
+                    var newCart = new Cart();
+                    {
+                        newCart.UserId = userId;
+                        newCart.CartItems = new List<CartItem>();
+                    }
+
+                    cart = db.Carts.Add(newCart);
+                }
+
+                var cartItem = new CartItem();
+                {
+                    cartItem.ProductId = productId;
+                }
+
+                cart.CartItems.Add(cartItem);
+
+                db.SaveChanges();
+
+            }
+
+            return Json(true);
         }
     }
 }
